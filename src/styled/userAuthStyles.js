@@ -138,6 +138,13 @@ export const SignupWrapperDiv = styled.div`
             :nth-of-type(1), :nth-of-type(2) {
             width: 48.5%;
             }
+            :nth-of-type(4) {
+               p {
+                  font-size: 1rem;
+                  color: red;
+                  margin: 0;
+               }
+            }
             :nth-of-type(6) {
             p {
                text-align: center;

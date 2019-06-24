@@ -3,9 +3,27 @@ import { Link } from 'react-router-dom';
 import Header from './Header';
 import { LoginWrapperDiv } from '../../styled/userAuthStyles';
 import { LoaderDiv } from '../../styled/Loader';
+import { connect } from 'react-redux';
+import { login } from '../../actions';
 
+class Login extends Component {
 
-export default class Login extends Component {
+   emailRef = React.createRef();
+   passwordRef = React.createRef();
+
+   onSubmit = event => {
+      event.preventDefault();
+      const user = {
+         email: this.emailRef.current.value,
+         password: this.passwordRef.current.value
+      }
+      // invoke the login action creator
+      this.props.login(user)
+      .then(res => {
+         alert(res.data.message)
+         this.props.history.push("/")
+      })
+   }
    render() {
       return (
          <>
@@ -18,21 +36,21 @@ export default class Login extends Component {
                <section>
                   {/* Loader for Promise events */}
                   {
-                     1 > 0
+                     this.props.requesting
                         ?
                         <LoaderDiv><div></div><div></div><div></div><div></div></LoaderDiv>
                         :
                         null
                   }
-                  <form onSubmit={""}>
+                  <form onSubmit={this.onSubmit}>
                      <div className="field">
                         <label>Email Address</label>
                         <input
                            autoComplete="username"
                            required
-                           type="emailfield"
+                           type="email"
                            placeholder="jamesdoe72@email.com"
-                           ref={''}
+                           ref={this.emailRef}
                         />
                         <div className="field">
                            <label>Password</label>
@@ -40,7 +58,7 @@ export default class Login extends Component {
                               autoComplete="current-password"
                               required
                               type="password"
-                              ref={''}
+                              ref={this.passwordRef}
                            />
                         </div>
                         <div className="form-footer">
@@ -57,3 +75,12 @@ export default class Login extends Component {
       );
    }
 }
+
+const mapStateToProps = state => {
+   return {
+      requesting: state.authReducer.requesting,
+      error: state.authReducer.error
+   }
+}
+
+export default connect(mapStateToProps, { login })(Login);
