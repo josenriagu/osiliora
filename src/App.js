@@ -1,16 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import { Route } from 'react-router-dom';
+import { GlobalStyle } from './styled/GlobalStyles';
+import Login from './components/userAuth/Login';
+import Register from './components/userAuth/Register';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome Home!</h2>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+export default class App extends Component {
+  render() {
+    return (
+      <>
+        <GlobalStyle />
+        <Route
+          path="/login"
+          render={props => {
+            return <Login {...props} />
+          }}
+        />
+        <Route
+          path="/register"
+          render={props => {
+            return <Register {...props} />
+          }}
+        />
+      </>
+    );
+  };
+};
