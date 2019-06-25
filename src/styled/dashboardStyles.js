@@ -31,6 +31,10 @@ export const HeaderStyle = styled.header`
          margin-left: 2rem;
       }
    }
+   button {
+      margin: 0;
+      padding: .8rem;
+   }
 `;
 
 export const HomeDiv = styled.div`
@@ -52,7 +56,7 @@ export const InventoryItemDiv = styled.div`
    display: flex;
    flex-direction: column;
    border: .05rem solid #b0b0b0;
-   cursor: pointer;
+   /* cursor: pointer; */
    :hover {
       -webkit-transform: scale(1.05);
       -ms-transform: scale(1.05);
@@ -62,6 +66,12 @@ export const InventoryItemDiv = styled.div`
       h4, span {
          color: #6ea22c;
          font-weight: bold;
+      }
+      div:nth-of-type(3) {
+         img {
+            cursor: pointer;
+            opacity: 1;
+         }
       }
    }
    div {
@@ -86,6 +96,15 @@ export const InventoryItemDiv = styled.div`
    }
    div:nth-of-type(1) {
       border-bottom: .1rem solid #b0b0b0;
+   }
+   div:nth-of-type(3) {
+      width: 30%;
+      margin-left: auto;
+      display:flex;
+      justify-content: space-between;
+      img {
+         opacity: 0.2;
+      }
    }
 `;
 

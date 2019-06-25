@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addIventoryItem } from '../../actions';
+import { addInventoryItem } from '../../actions';
 import { InventoryFormSection } from '../../styled/dashboardStyles';
 
 class InventoryForm extends Component {
@@ -30,7 +30,7 @@ class InventoryForm extends Component {
       const value = event.target.value;
       this.inputChange(field, value);
    }
-   onSumbit = event => {
+   onSubmit = event => {
       event.preventDefault()
       const newItem = {
          name: this.state.form.name,
@@ -41,12 +41,13 @@ class InventoryForm extends Component {
          inStock: true,
          description: this.state.form.description
       }
-      this.props.addIventoryItem(this.props.userId, newItem)
+      this.props.addInventoryItem(this.props.userId, newItem)
          .then(() => {
             this.props.history.push("/");
          })
    }
    render() {
+      console.log(this.props.itemToEdit);
       return (
          <InventoryFormSection>
             {
@@ -57,7 +58,7 @@ class InventoryForm extends Component {
                   <h3>Add Inventory Item</h3>
 
             }
-            <form onSubmit={event => this.onSumbit(event)}>
+            <form onSubmit={event => this.onSubmit(event)}>
                <div>
                   <label>Name</label>
                   <input
@@ -153,4 +154,4 @@ const mapStateToProps = state => {
    }
 }
 
-export default connect(mapStateToProps, { addIventoryItem })(InventoryForm);
+export default connect(mapStateToProps, { addInventoryItem })(InventoryForm);

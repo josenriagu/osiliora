@@ -20,8 +20,7 @@ class Login extends Component {
       // invoke the login action creator
       this.props.login(user)
       .then(res => {
-         this.props.history.push("/");
-         window.location.reload();
+         window.location.pathname = "/"
       })
    }
    render() {

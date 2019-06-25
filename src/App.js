@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { GlobalStyle } from './styled/GlobalStyles';
 import Header from './components/dashboard/Header';
@@ -20,10 +20,10 @@ class App extends Component {
             ?
             <Header />
             :
-            null            
+            null
         }
         <PrivateRoute
-        exact
+          exact
           path="/"
           component={Home}
         />
