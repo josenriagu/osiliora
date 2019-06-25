@@ -4,14 +4,12 @@ import { InventoryItemDiv } from '../../styled/dashboardStyles';
 // define categories
 const category = ["Fruits", "Vegetables", "Meats", "Grains", "Spices", "Utensils", "Dishware", "Appliances"]
 
-export default function InventoryItem({ index, item, clickHandler }) {
+export default function InventoryItem({ index, item, clickHandler, onDelete }) {
    return (
       <InventoryItemDiv
          key={index}
-         onClick={() => clickHandler(item.itemId)}
       >
          <div>
-            <p>{item.itemId}</p>
             <p>{category[item.categoryId - 1]}</p>
          </div>
          <div>
@@ -20,7 +18,16 @@ export default function InventoryItem({ index, item, clickHandler }) {
             <p>Quantity left: <span>{item.qty} {item.units}</span></p>
          </div>
          <div>
-            <img src="/assets/images/delete.png" alt="delete" />
+            <img
+               onClick={() => clickHandler(item.itemId)}
+               src="/assets/images/pencil.png"
+               alt="delete"
+            />
+            <img
+               onClick={() => onDelete(item.itemId)}
+               src="/assets/images/delete.png"
+               alt="delete"
+            />
          </div>
       </InventoryItemDiv>
    );

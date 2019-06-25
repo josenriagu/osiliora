@@ -80,14 +80,18 @@ export const fetchInventory = (userId) => dispatch => {
    dispatch(requesting());
    return enrichedAxios().get(`https://soup-server.herokuapp.com/users/${userId}/inventory`)
       .then(res => {
-         console.log(res.data)
+         dispatch(success());
          dispatch(saveInventory(res.data));
-   })
+      })
 }
-export const addIventoryItem = (userId, item) => dispatch => {
+export const addInventoryItem = (userId, item) => dispatch => {
    dispatch(requesting());
    return enrichedAxios().post(`https://soup-server.herokuapp.com/users/${userId}/inventory`, item)
       .then(() => {
          fetchInventory(userId);
-   })
+      })
+}
+export const deleteInventoryItem = (userId, itemId) => dispatch => {
+   dispatch(requesting());
+   return enrichedAxios().delete(`https://soup-server.herokuapp.com/users/${userId}/inventory/${itemId}`)
 }
