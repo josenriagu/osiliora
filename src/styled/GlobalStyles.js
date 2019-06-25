@@ -24,6 +24,7 @@ h2 {
 }
 h3 {
    font-size: 1.872rem;
+   margin-bottom: 0rem;
 }
 h4 {
    font-size: 1.75rem;
@@ -47,8 +48,9 @@ button {
    color: white;
    }
 }
-input {
+input, textarea, select {
    font-size: 1.5rem;
+   font-family: "Roboto", sans-serif;
    margin-top: 1rem;
    padding: 1rem;
    border-radius: .5rem;

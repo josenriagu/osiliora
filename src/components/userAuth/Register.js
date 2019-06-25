@@ -24,7 +24,8 @@ class Register extends Component {
          firstName: this.firstnameRef.current.value,
          lastName: this.lastnameRef.current.value,
          email: this.emailRef.current.value,
-         password: this.passwordRef.current.value
+         password: this.passwordRef.current.value,
+         profilePicUrl: ""
       }
       if (newUser.email !== this.confirmemailRef.current.value) {
          this.setState(state => ({ ...state, unmatch: true }));
