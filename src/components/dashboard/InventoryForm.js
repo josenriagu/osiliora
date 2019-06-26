@@ -21,10 +21,10 @@ class InventoryForm extends Component {
             return {
                form: {
                   ...state.form,
-                  name: this.props.itemToEdit[0].name,
-                  description: this.props.itemToEdit[0].description,
-                  qty: this.props.itemToEdit[0].qty,
-                  units: this.props.itemToEdit[0].units
+                  name: this.props.itemToEdit.name,
+                  description: this.props.itemToEdit.description,
+                  qty: this.props.itemToEdit.qty,
+                  units: this.props.itemToEdit.units
                }
             }
          })
@@ -75,7 +75,7 @@ class InventoryForm extends Component {
          inStock: true,
          description: description
       }
-      this.props.updateInventoryItem(this.props.userId, this.props.itemToEdit[0].itemId, updatedItem)
+      this.props.updateInventoryItem(this.props.userId, this.props.itemToEdit.itemId, updatedItem)
          .then(() => {
             this.props.history.push("/");
          })

@@ -11,7 +11,7 @@ export default function InventoryItem({ index, item, onEdit, onDelete }) {
             <p>{category[item.categoryId - 1]}</p>
             {
                item.qty === 0 ? <p>Out of Stock</p> :
-               item.qty <= 5 && item.categoryId !== 8 ? <p>Item low in stock</p> :
+               item.qty <= 5 && item.categoryId !== 8 ? <p>Low stock</p> :
                null
             }
          </div>

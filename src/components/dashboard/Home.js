@@ -29,7 +29,7 @@ class Home extends Component {
 
    onEdit = id => {
       this.props.toggleEdit(true);
-      const itemToEdit = this.props.inventory.filter(item => item.itemId === id)
+      const itemToEdit = this.props.inventory.find(item => item.itemId === id)
       console.log(itemToEdit);
       this.props.setEdit(itemToEdit);
       this.props.history.push("/edit-inventory")
