@@ -70,21 +70,44 @@ export const HeaderStyle = styled.header`
       margin: 0;
       padding: .8rem;
    }
+   div:nth-of-type(2), div:nth-of-type(3), button {
+      @media (max-width: 500px) {
+         display: none;
+      }
+   }
 `;
-export const active = styled.a`
-   background-color: #6ea22c;
-   color: white;
-`;
-export const HomeDiv = styled.div`
+export const HomeWrapperDiv = styled.div`
    width: 75%;
+   margin: 1rem auto;
+   @media (max-width: 500px) {
+      width: 95%;
+   }
+`;
+export const FilterDiv = styled.div`
+   display: flex;
+   width: 25%;
+   justify-content: space-between;
+   align-items: center;
+   @media (max-width: 500px) {
+      width: 100%;
+   }
+   select {
+      margin-top: 0;
+   }
+   p {
+      margin: 0;
+   }
+`;
+export const InventoryDiv = styled.div`
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
-   margin: 2rem auto;
    padding: 2rem;
    border-radius: 1rem;
    box-shadow: -0.1rem 1rem 1rem 0 rgba(0, 0, 0, 0.08);
-   /* background-color:red; */
+   @media (max-width: 500px) {
+      padding: .8rem;
+   }
 `;
 
 export const InventoryItemDiv = styled.div`
@@ -96,6 +119,9 @@ export const InventoryItemDiv = styled.div`
    border: .05rem solid #b0b0b0;
    /* make hover transforms a bit slower */
    transition: transform 1s;
+   @media (max-width: 500px) {
+      width: 48%;
+   }
    :hover {
       -webkit-transform: scale(1.05);
       -ms-transform: scale(1.05);
@@ -114,7 +140,7 @@ export const InventoryItemDiv = styled.div`
       }
    }
    div {
-      padding: 1rem;
+      margin: 1rem;
       word-wrap: break-word;
       h4 {
          text-transform: capitalize;
@@ -165,10 +191,16 @@ export const InventoryFormSection = styled.section`
    flex-direction: column;
    border-radius: 1rem;
    box-shadow: -0.1rem 1rem 1rem 0 rgba(0, 0, 0, 0.08);
+   @media (max-width: 500px) {
+      width: 92%;
+   }
    form {
       width: 70%;
       margin: 1rem auto;
       text-align: left;
+      @media (max-width: 500px) {
+         width: 85%;
+      }
       div {
          display: flex;
          flex-direction: column;
