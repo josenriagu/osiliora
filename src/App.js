@@ -25,7 +25,7 @@ class App extends Component {
         <PrivateRoute
           exact
           path="/"
-          component={Home}
+          render={props => <Home {...props} />}
         />
         <PrivateRoute
           exact
@@ -36,7 +36,7 @@ class App extends Component {
               :
               "/add-inventory"
           }
-          component={InventoryForm}
+          render={props => <InventoryForm {...props} />}
         />
         <Route
           path="/login"

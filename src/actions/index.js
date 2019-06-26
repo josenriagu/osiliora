@@ -54,7 +54,6 @@ export const setEdit = payload => {
       payload,
    }
 }
-
 export const signUp = newUser => dispatch => {
    dispatch(requesting());
    return axios.post('https://soup-server.herokuapp.com/auth/register', newUser)
@@ -82,6 +81,8 @@ export const fetchInventory = (userId) => dispatch => {
       .then(res => {
          dispatch(success());
          dispatch(saveInventory(res.data));
+      }).catch(err => {
+         dispatch(failure(err.message));
       })
 }
 export const addInventoryItem = (userId, item) => dispatch => {
@@ -89,9 +90,25 @@ export const addInventoryItem = (userId, item) => dispatch => {
    return enrichedAxios().post(`https://soup-server.herokuapp.com/users/${userId}/inventory`, item)
       .then(() => {
          fetchInventory(userId);
+      }).catch(err => {
+         dispatch(failure(err.message));
+      })
+}
+export const updateInventoryItem = (userId, itemId, item) => dispatch => {
+   dispatch(requesting());
+   return enrichedAxios().put(`https://soup-server.herokuapp.com/users/${userId}/inventory/${itemId}`, item)
+      .then(() => {
+         dispatch(toggleEdit(false));
+         dispatch(setEdit(null));
+         fetchInventory(userId);
+      }).catch(err => {
+         dispatch(failure(err.message));
       })
 }
 export const deleteInventoryItem = (userId, itemId) => dispatch => {
    dispatch(requesting());
    return enrichedAxios().delete(`https://soup-server.herokuapp.com/users/${userId}/inventory/${itemId}`)
+      .catch(err => {
+         dispatch(failure(err.message));
+      })
 }

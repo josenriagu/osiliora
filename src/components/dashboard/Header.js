@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { HeaderStyle } from '../../styled/dashboardStyles';
 
 class Header extends Component {
@@ -14,7 +14,9 @@ class Header extends Component {
       return (
          <HeaderStyle>
             <div>
-               <h2>I'll Serve Soup</h2>
+               <Link to="/">
+                  <h2>I'll Serve Soup</h2>
+               </Link>
             </div>
             <div>
                <NavLink
@@ -27,8 +29,12 @@ class Header extends Component {
                         "/edit-inventory"
                         :
                         "/add-inventory"
-                  }
-               >{this.props.editMode ? "Edit Inventory" : "Add Inventory"}</NavLink>
+                  }>{this.props.editMode
+                     ?
+                     "Edit Inventory"
+                     :
+                     "Add Inventory"
+                  }</NavLink>
             </div>
             <button onClick={() => this.onLogout()} >
                Logout

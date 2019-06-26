@@ -27,7 +27,7 @@ class Home extends Component {
 
    }
 
-   clickHandler = id => {
+   onEdit = id => {
       this.props.toggleEdit(true);
       const itemToEdit = this.props.inventory.filter(item => item.itemId === id)
       console.log(itemToEdit);
@@ -49,9 +49,10 @@ class Home extends Component {
                   :
                   this.props.inventory.map((item, index) => {
                      return <InventoryItem
+                        key={item.itemId}
                         index={index}
                         item={item}
-                        clickHandler={this.clickHandler}
+                        onEdit={this.onEdit}
                         onDelete={this.onDelete}
                      />
                   })
