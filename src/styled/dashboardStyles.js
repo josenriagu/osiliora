@@ -1,5 +1,22 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
+const fade = keyframes`
+  0% {
+     opacity: 0;
+  }
+  25% {
+     opacity: 0.25;
+  }
+  50% {
+     opacity: 0.5;
+  }
+  75% {
+     opacity: 0.75;
+  }
+  100% {
+     opacity: 1;
+  }
+`;
 export const HeaderStyle = styled.header`
    display: flex;
    justify-content: space-between;
@@ -7,12 +24,16 @@ export const HeaderStyle = styled.header`
    background-color: #ffffff;
    border-bottom: .1rem solid #b0b0b0;
    padding: 1.6rem;
+   transition: box-shadow 1s;
    /* rules to make the header sticky */
    /* position: fixed;
    top: 0;
    width: 100%; */
    :hover {
       box-shadow: -0.1rem 1rem 1rem 0 rgba(0, 0, 0, 0.08);
+   }
+   a {
+      text-decoration: none;
    }
    h2 {
       margin: 0;
@@ -26,9 +47,11 @@ export const HeaderStyle = styled.header`
       justify-content: space-between;
       a {
          font-size: 1.6rem;
-         text-decoration: none;
          color: black;
          margin-left: 2rem;
+         border-radius: .5rem;
+         border: .1rem solid #e5e5e5;
+         padding: .8rem;
       }
    }
    button {
@@ -36,7 +59,10 @@ export const HeaderStyle = styled.header`
       padding: .8rem;
    }
 `;
-
+export const active = styled.a`
+   background-color: #6ea22c;
+   color: white;
+`;
 export const HomeDiv = styled.div`
    width: 75%;
    display: flex;
@@ -56,7 +82,8 @@ export const InventoryItemDiv = styled.div`
    display: flex;
    flex-direction: column;
    border: .05rem solid #b0b0b0;
-   /* cursor: pointer; */
+   /* make hover transforms a bit slower */
+   transition: transform 1s;
    :hover {
       -webkit-transform: scale(1.05);
       -ms-transform: scale(1.05);
@@ -96,9 +123,18 @@ export const InventoryItemDiv = styled.div`
    }
    div:nth-of-type(1) {
       border-bottom: .1rem solid #b0b0b0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p:nth-of-type(2) {
+         font-size: 1.1rem;
+         font-weight: bold;
+         color: red;
+         animation: ${fade} 2s linear;
+      }
    }
    div:nth-of-type(3) {
-      width: 30%;
+      width: 35%;
       margin-left: auto;
       display:flex;
       justify-content: space-between;
