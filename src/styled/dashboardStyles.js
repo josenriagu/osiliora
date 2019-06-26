@@ -31,16 +31,22 @@ export const LoaderDiv = styled.div`
 `;
 export const HeaderStyle = styled.header`
    display: flex;
+   flex-wrap: wrap;
    justify-content: space-between;
    align-items: center;
    background-color: #ffffff;
    border-bottom: .1rem solid #b0b0b0;
    padding: 1.6rem;
    transition: box-shadow 1s;
-   /* rules to make the header sticky */
-   /* position: fixed;
+   position: sticky;
    top: 0;
-   width: 100%; */
+   z-index: 9999;
+   @media (max-width: 500px) {
+   /* rules to make the header sticky */
+   position: sticky;
+   top: 0;
+   z-index: 9999;
+   }
    :hover {
       box-shadow: -0.1rem 1rem 1rem 0 rgba(0, 0, 0, 0.08);
    }
@@ -51,12 +57,29 @@ export const HeaderStyle = styled.header`
       margin: 0;
    }
    div:nth-of-type(1) {
-      width: 70%;
+      width: 60%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width: 500px) {
+         width: 100%;
+      }
+      div {
+         display:none;
+         width: fit-content;
+         @media (max-width: 500px) {
+            display: flex;
+         }
+      }
    }
    div:nth-of-type(2) {
       width: 20%;
       margin-right: 3rem;
       justify-content: space-between;
+      @media (max-width: 500px) {
+         display: none;
+         width: 100%;
+      }
       a {
          font-size: 1.6rem;
          color: black;
@@ -66,13 +89,28 @@ export const HeaderStyle = styled.header`
          padding: .8rem;
       }
    }
+   section {
+      display: none;
+      @media (max-width: 500px) {
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+         margin-top: 1rem;
+      }
+      a {
+         font-size: 1.6rem;
+         color: black;
+         border-bottom: .1rem solid #e5e5e5;
+         padding: 1.5rem;
+         text-align: center;
+      }
+   }
    button {
       margin: 0;
       padding: .8rem;
-   }
-   div:nth-of-type(2), div:nth-of-type(3), button {
       @media (max-width: 500px) {
-         display: none;
+         display:none;
+         margin: 1rem auto 0;
       }
    }
 `;
