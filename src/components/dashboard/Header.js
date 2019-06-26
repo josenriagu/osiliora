@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Loader from 'react-loader-spinner';
 import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-import { HeaderStyle } from '../../styled/dashboardStyles';
+import { LoaderDiv, HeaderStyle } from '../../styled/dashboardStyles';
 
 class Header extends Component {
 
@@ -11,6 +12,15 @@ class Header extends Component {
    }
 
    render() {
+      if (this.props.requesting) {
+         return <LoaderDiv>
+            <Loader
+            type="Circles"
+            color="#6ea22c"
+            height="50px"
+            width="50px"
+         /></LoaderDiv>
+      }
       return (
          <HeaderStyle>
             <div>
@@ -46,7 +56,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
    return {
-      editMode: state.userReducer.editMode
+      editMode: state.userReducer.editMode,
+      requesting: state.authReducer.requesting
    }
 }
 

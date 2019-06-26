@@ -17,6 +17,18 @@ const fade = keyframes`
      opacity: 1;
   }
 `;
+export const LoaderDiv = styled.div`
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(255, 255, 255, .9);
+   position: fixed;
+   z-index: 9999;
+   div:nth-of-type(1) {
+      position: relative;
+      top: 45%;
+      left: 45%;
+   }
+`;
 export const HeaderStyle = styled.header`
    display: flex;
    justify-content: space-between;
@@ -103,6 +115,7 @@ export const InventoryItemDiv = styled.div`
    }
    div {
       padding: 1rem;
+      word-wrap: break-word;
       h4 {
          text-transform: capitalize;
          margin: 0 0 1rem;
