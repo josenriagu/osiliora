@@ -148,14 +148,9 @@ class InventoryForm extends Component {
                      onChange={this.changeHandler}
                   >
                      <option></option>
-                     <option value="1">Fruits</option>
-                     <option value="2">Vegetables</option>
-                     <option value="3">Meats</option>
-                     <option value="4">Grains</option>
-                     <option value="5">Spices</option>
-                     <option value="6">Utensils</option>
-                     <option value="7">Dishware</option>
-                     <option value="8">Appliances</option>
+                     {
+                        this.props.category.map((value, idx) => idx !== 0 ? <option key={idx} value={idx}>{value}</option> : null)
+                     }
                   </select>
                </div>
                <div className="form-footer">
@@ -180,6 +175,7 @@ class InventoryForm extends Component {
 const mapStateToProps = state => {
    return {
       userId: state.userReducer.userId,
+      category: state.userReducer.category,
       editMode: state.userReducer.editMode,
       itemToEdit: state.userReducer.itemToEdit,
       requesting: state.authReducer.requesting

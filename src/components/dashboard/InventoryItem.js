@@ -1,14 +1,11 @@
 import React from 'react';
 import { InventoryItemDiv } from '../../styled/dashboardStyles';
 
-// define categories
-const category = ["Fruits", "Vegetables", "Meats", "Grains", "Spices", "Utensils", "Dishware", "Appliances"]
-
-export default function InventoryItem({ index, item, onEdit, onDelete }) {
+export default function InventoryItem({ category, item, onEdit, onDelete }) {
    return (
       <InventoryItemDiv>
          <div>
-            <p>{category[item.categoryId - 1]}</p>
+            <p>{category[item.categoryId]}</p>
             {
                item.qty === 0 ? <p>Out of Stock</p> :
                item.qty <= 5 && item.categoryId !== 8 ? <p>Low stock</p> :
