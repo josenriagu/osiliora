@@ -73,6 +73,7 @@ function registerValidSW(swUrl, config) {
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
               );
+              alert('This web app works offline! New content is available once existing tabs are closed.');
 
               // Execute callback
               if (config && config.onUpdate) {
