@@ -1,6 +1,6 @@
 {
-  "short_name": "Soup Kitchen",
-  "name": "Soup Kitchen Inventory",
+  "short_name": "SKIM",
+  "name": "Soup Kitchen Inventory Manager",
   "icons": [
     {
       "src": "/assets/images/icons-192.png",
@@ -13,7 +13,8 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "theme_color": "#bdf2d5",
   "background_color": "#f4f3f4"
