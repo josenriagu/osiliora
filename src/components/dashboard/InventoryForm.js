@@ -69,7 +69,7 @@ class InventoryForm extends Component {
          qty: qty,
          categoryId: categoryId,
          units: units,
-         imageBlob: imageBlob,
+         imageUrl: imageBlob,
          inStock: true,
          description: description
       }

@@ -213,16 +213,21 @@ export const InventoryItemDiv = styled.div`
    section:nth-of-type(2) {
       margin-top: 0;
       div {
-         max-width: 20.25rem;
-         max-height: 20.25rem;
-         margin-bottom: 1rem;
-         @media (max-width: 500px) {
-            max-width: 12.498rem;
-            max-height: 12.498rem;
-         }
+         width: 10rem;
+         height: 10rem;
+         margin: 0 auto 1rem;
+         position: relative;
+         overflow: hidden;
          img {
             width: 100%;
             height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
          }
       }
    }

@@ -88,7 +88,7 @@ export const fetchInventory = (userId) => dispatch => {
 }
 export const addInventoryItem = (userId, item) => dispatch => {
    const formData = new FormData(); // create an instance of formData
-   formData.append('image', item.imageBlob);
+   formData.append('image', item.imageUrl);
    const config = {
       headers: { 'Content-Type': 'multipart/form-data' }
    } // define post request headers for cloudinary upload
@@ -96,7 +96,7 @@ export const addInventoryItem = (userId, item) => dispatch => {
    dispatch(requesting());
    return axios.post('https://soup-server.herokuapp.com/upload', formData, config)
       .then(res => {
-         item.imageBlob = res.data.image
+         item.imageUrl = res.data.image
       })
       .then(() => {
          enrichedAxios().post(`https://soup-server.herokuapp.com/users/${userId}/inventory`, item)
