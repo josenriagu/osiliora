@@ -47,7 +47,7 @@ class Register extends Component {
             <SignupWrapperDiv>
                <section>
                   <div>
-                     <img src={logo} className="app-logo" alt="logo" />
+                     <img src={logo} alt="logo" />
                   </div>
                   <h2>Welcome To I'll Serve Soup</h2>
                   <p>Make soup kitchen management easier for you by using the world’s most accessible and intuitive software. I’ll Serve Soup is built to be used by people of all technical skill levels, without compromising on its core features like:</p>

@@ -38,6 +38,7 @@ label {
 button {
    cursor: pointer;
    font-size: 1.5rem;
+   font-weight: bold;
    margin: 1.5rem 0;
    padding: 1.2rem;
    border-radius: .5rem;

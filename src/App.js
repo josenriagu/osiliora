@@ -7,7 +7,6 @@ import Register from './components/userAuth/Register';
 import Login from './components/userAuth/Login';
 import Home from './components/dashboard/Home';
 import InventoryForm from './components/dashboard/InventoryForm';
-import './App.css';
 import { connect } from 'react-redux';
 
 class App extends Component {

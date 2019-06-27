@@ -31,6 +31,9 @@ export const LoginWrapperDiv = styled.div`
       background-color: #bdf2d5;
       border-radius: 1rem 1rem 0 0;
       text-align: center;
+      h2 {
+         color: black;
+      }
    }
    section:nth-of-type(2) {
       padding: 0 4rem 4rem;

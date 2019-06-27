@@ -153,7 +153,7 @@ class InventoryForm extends Component {
                      }
                   </select>
                </div>
-               <div className="form-footer">
+               <div>
                   {
                      this.props.editMode
                         ?
