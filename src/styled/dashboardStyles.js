@@ -170,14 +170,14 @@ export const InventoryItemDiv = styled.div`
          color: #6ea22c;
          font-weight: bold;
       }
-      div:nth-of-type(3) {
+      section:nth-of-type(3) {
          img {
             cursor: pointer;
             opacity: 1;
          }
       }
    }
-   div {
+   section {
       margin: 1rem;
       word-wrap: break-word;
       h4 {
@@ -198,7 +198,7 @@ export const InventoryItemDiv = styled.div`
          }
       }
    }
-   div:nth-of-type(1) {
+   section:nth-of-type(1) {
       border-bottom: .1rem solid #b0b0b0;
       display: flex;
       justify-content: space-between;
@@ -210,7 +210,23 @@ export const InventoryItemDiv = styled.div`
          animation: ${fade} 2s linear;
       }
    }
-   div:nth-of-type(3) {
+   section:nth-of-type(2) {
+      margin-top: 0;
+      div {
+         max-width: 20.25rem;
+         max-height: 20.25rem;
+         margin-bottom: 1rem;
+         @media (max-width: 500px) {
+            max-width: 12.498rem;
+            max-height: 12.498rem;
+         }
+         img {
+            width: 100%;
+            height: 100%;
+         }
+      }
+   }
+   section:nth-of-type(3) {
       width: 35%;
       margin-left: auto;
       display:flex;
