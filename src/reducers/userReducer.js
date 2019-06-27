@@ -3,6 +3,7 @@ import * as types from '../actions';
 const initialState = {
    userId: "",
    inventory: [],
+   category: ["All", "Fruits", "Vegetables", "Meats", "Grains", "Spices", "Utensils", "Dishware", "Appliances"],
    editMode: false,
    itemToEdit: null
 }

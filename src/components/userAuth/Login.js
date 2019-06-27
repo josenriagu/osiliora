@@ -20,8 +20,7 @@ class Login extends Component {
       // invoke the login action creator
       this.props.login(user)
       .then(res => {
-         this.props.history.push("/");
-         window.location.reload();
+         window.location.pathname = "/"
       })
    }
    render() {
@@ -43,7 +42,7 @@ class Login extends Component {
                         null
                   }
                   <form onSubmit={this.onSubmit}>
-                     <div className="field">
+                     <div>
                         <label>Email Address</label>
                         <input
                            autoComplete="username"
@@ -52,7 +51,7 @@ class Login extends Component {
                            placeholder="jamesdoe72@email.com"
                            ref={this.emailRef}
                         />
-                        <div className="field">
+                        <div>
                            <label>Password</label>
                            <input
                               autoComplete="current-password"
@@ -61,7 +60,7 @@ class Login extends Component {
                               ref={this.passwordRef}
                            />
                         </div>
-                        <div className="form-footer">
+                        <div>
                            <button
                               type="submit"
                            >Login</button>

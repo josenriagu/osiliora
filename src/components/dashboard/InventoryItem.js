@@ -1,18 +1,16 @@
 import React from 'react';
 import { InventoryItemDiv } from '../../styled/dashboardStyles';
 
-// define categories
-const category = ["Fruits", "Vegetables", "Meats", "Grains", "Spices", "Utensils", "Dishware", "Appliances"]
-
-export default function InventoryItem({ index, item, clickHandler }) {
+export default function InventoryItem({ category, item, onEdit, onDelete }) {
    return (
-      <InventoryItemDiv
-         key={index}
-         onClick={() => clickHandler(item.itemId)}
-      >
+      <InventoryItemDiv>
          <div>
-            <p>{item.itemId}</p>
-            <p>{category[item.categoryId - 1]}</p>
+            <p>{category[item.categoryId]}</p>
+            {
+               item.qty === 0 ? <p>Out of Stock</p> :
+               item.qty <= 5 && item.categoryId !== 8 ? <p>Low stock</p> :
+               null
+            }
          </div>
          <div>
             <h4>{item.name}</h4>
@@ -20,7 +18,16 @@ export default function InventoryItem({ index, item, clickHandler }) {
             <p>Quantity left: <span>{item.qty} {item.units}</span></p>
          </div>
          <div>
-            <img src="/assets/images/delete.png" alt="delete" />
+            <img
+               onClick={() => onEdit(item.itemId)}
+               src="/assets/images/pencil.png"
+               alt="edit"
+            />
+            <img
+               onClick={() => onDelete(item.itemId)}
+               src="/assets/images/delete.png"
+               alt="delete"
+            />
          </div>
       </InventoryItemDiv>
    );

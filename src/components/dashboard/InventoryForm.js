@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addIventoryItem } from '../../actions';
+import { addInventoryItem, updateInventoryItem } from '../../actions';
 import { InventoryFormSection } from '../../styled/dashboardStyles';
 
 class InventoryForm extends Component {
@@ -14,7 +14,23 @@ class InventoryForm extends Component {
          units: ""
       },
    }
-   
+
+   componentDidMount() {
+      if (this.props.editMode) {
+         this.setState(state => {
+            return {
+               form: {
+                  ...state.form,
+                  name: this.props.itemToEdit.name,
+                  description: this.props.itemToEdit.description,
+                  qty: this.props.itemToEdit.qty,
+                  units: this.props.itemToEdit.units
+               }
+            }
+         })
+      }
+   }
+
    inputChange = (field, value) => {
       this.setState(state => {
          return {
@@ -30,18 +46,36 @@ class InventoryForm extends Component {
       const value = event.target.value;
       this.inputChange(field, value);
    }
-   onSumbit = event => {
-      event.preventDefault()
+   onAdd = event => {
+      event.preventDefault();
+      const { name, qty, categoryId, units, description } = this.state.form;
       const newItem = {
-         name: this.state.form.name,
-         qty: this.state.form.qty,
-         categoryId: this.state.form.categoryId,
-         units: this.state.form.units,
+         name: name,
+         qty: qty,
+         categoryId: categoryId,
+         units: units,
          imageUrl: '',
          inStock: true,
-         description: this.state.form.description
+         description: description
       }
-      this.props.addIventoryItem(this.props.userId, newItem)
+      this.props.addInventoryItem(this.props.userId, newItem)
+         .then(() => {
+            this.props.history.push("/");
+         })
+   }
+   onUpdate = event => {
+      event.preventDefault()
+      const { name, qty, categoryId, units, description } = this.state.form;
+      const updatedItem = {
+         name: name,
+         qty: qty,
+         categoryId: categoryId,
+         units: units,
+         imageUrl: '',
+         inStock: true,
+         description: description
+      }
+      this.props.updateInventoryItem(this.props.userId, this.props.itemToEdit.itemId, updatedItem)
          .then(() => {
             this.props.history.push("/");
          })
@@ -57,7 +91,7 @@ class InventoryForm extends Component {
                   <h3>Add Inventory Item</h3>
 
             }
-            <form onSubmit={event => this.onSumbit(event)}>
+            <form onSubmit={event => this.props.editMode ? this.onUpdate(event) : this.onAdd(event)}>
                <div>
                   <label>Name</label>
                   <input
@@ -90,7 +124,6 @@ class InventoryForm extends Component {
                      value={this.state.form.qty}
                      autoComplete="quantity"
                      required
-                     min="1"
                      type="number"
                      placeholder="minimum required is 1"
                      onChange={this.changeHandler}
@@ -115,17 +148,12 @@ class InventoryForm extends Component {
                      onChange={this.changeHandler}
                   >
                      <option></option>
-                     <option value="1">Fruits</option>
-                     <option value="2">Vegetables</option>
-                     <option value="3">Meats</option>
-                     <option value="4">Grains</option>
-                     <option value="5">Spices</option>
-                     <option value="6">Utensils</option>
-                     <option value="7">Dishware</option>
-                     <option value="8">Appliances</option>
+                     {
+                        this.props.category.map((value, idx) => idx !== 0 ? <option key={idx} value={idx}>{value}</option> : null)
+                     }
                   </select>
                </div>
-               <div className="form-footer">
+               <div>
                   {
                      this.props.editMode
                         ?
@@ -147,10 +175,11 @@ class InventoryForm extends Component {
 const mapStateToProps = state => {
    return {
       userId: state.userReducer.userId,
+      category: state.userReducer.category,
       editMode: state.userReducer.editMode,
       itemToEdit: state.userReducer.itemToEdit,
       requesting: state.authReducer.requesting
    }
 }
 
-export default connect(mapStateToProps, { addIventoryItem })(InventoryForm);
+export default connect(mapStateToProps, { addInventoryItem, updateInventoryItem })(InventoryForm);

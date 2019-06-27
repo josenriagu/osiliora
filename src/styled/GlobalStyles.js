@@ -38,6 +38,7 @@ label {
 button {
    cursor: pointer;
    font-size: 1.5rem;
+   font-weight: bold;
    margin: 1.5rem 0;
    padding: 1.2rem;
    border-radius: .5rem;
@@ -50,11 +51,14 @@ button {
 }
 input, textarea, select {
    font-size: 1.5rem;
+   /* inject font family for textarea */
    font-family: "Roboto", sans-serif;
    margin-top: 1rem;
    padding: 1rem;
    border-radius: .5rem;
    border: .1rem solid #e5e5e5;
+   /* make hover transforms a bit slower */
+   transition: transform 1s;
    :focus {
       outline: none;
       border: .1rem solid gold;

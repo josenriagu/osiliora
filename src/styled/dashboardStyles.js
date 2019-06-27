@@ -1,48 +1,151 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
+const fade = keyframes`
+  0% {
+     opacity: 0;
+  }
+  25% {
+     opacity: 0.25;
+  }
+  50% {
+     opacity: 0.5;
+  }
+  75% {
+     opacity: 0.75;
+  }
+  100% {
+     opacity: 1;
+  }
+`;
+export const LoaderDiv = styled.div`
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(255, 255, 255, .9);
+   position: fixed;
+   z-index: 9999;
+   div:nth-of-type(1) {
+      position: relative;
+      top: 45%;
+      left: 45%;
+   }
+`;
 export const HeaderStyle = styled.header`
    display: flex;
+   flex-wrap: wrap;
    justify-content: space-between;
    align-items: center;
    background-color: #ffffff;
    border-bottom: .1rem solid #b0b0b0;
    padding: 1.6rem;
-   /* rules to make the header sticky */
-   /* position: fixed;
+   transition: box-shadow 1s;
+   position: sticky;
    top: 0;
-   width: 100%; */
+   z-index: 9999;
+   @media (max-width: 500px) {
+   /* rules to make the header sticky */
+   position: sticky;
+   top: 0;
+   z-index: 9999;
+   }
    :hover {
       box-shadow: -0.1rem 1rem 1rem 0 rgba(0, 0, 0, 0.08);
+   }
+   a {
+      text-decoration: none;
    }
    h2 {
       margin: 0;
    }
    div:nth-of-type(1) {
-      width: 70%;
+      width: 60%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (max-width: 500px) {
+         width: 100%;
+      }
+      div {
+         display:none;
+         width: fit-content;
+         @media (max-width: 500px) {
+            display: flex;
+         }
+      }
    }
    div:nth-of-type(2) {
       width: 20%;
       margin-right: 3rem;
       justify-content: space-between;
+      @media (max-width: 500px) {
+         display: none;
+         width: 100%;
+      }
       a {
          font-size: 1.6rem;
-         text-decoration: none;
          color: black;
          margin-left: 2rem;
+         border-radius: .5rem;
+         border: .1rem solid #e5e5e5;
+         padding: .8rem;
+      }
+   }
+   section {
+      display: none;
+      @media (max-width: 500px) {
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+         margin-top: 1rem;
+      }
+      a {
+         font-size: 1.6rem;
+         color: black;
+         border-bottom: .1rem solid #e5e5e5;
+         padding: 1.5rem;
+         text-align: center;
+      }
+   }
+   button {
+      margin: 0;
+      padding: .8rem;
+      @media (max-width: 500px) {
+         display:none;
+         margin: 1rem auto 0;
       }
    }
 `;
-
-export const HomeDiv = styled.div`
+export const HomeWrapperDiv = styled.div`
    width: 75%;
+   margin: 1rem auto;
+   @media (max-width: 500px) {
+      width: 95%;
+   }
+`;
+export const FilterDiv = styled.div`
+   display: flex;
+   width: 25%;
+   justify-content: space-between;
+   align-items: center;
+   @media (max-width: 500px) {
+      width: 100%;
+   }
+   select {
+      margin-top: 0;
+   }
+   p {
+      margin: 0;
+   }
+`;
+export const InventoryDiv = styled.div`
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
-   margin: 2rem auto;
    padding: 2rem;
    border-radius: 1rem;
    box-shadow: -0.1rem 1rem 1rem 0 rgba(0, 0, 0, 0.08);
-   /* background-color:red; */
+   @media (max-width: 500px) {
+      padding: .8rem;
+   }
 `;
 
 export const InventoryItemDiv = styled.div`
@@ -52,7 +155,11 @@ export const InventoryItemDiv = styled.div`
    display: flex;
    flex-direction: column;
    border: .05rem solid #b0b0b0;
-   cursor: pointer;
+   /* make hover transforms a bit slower */
+   transition: transform 1s;
+   @media (max-width: 500px) {
+      width: 48%;
+   }
    :hover {
       -webkit-transform: scale(1.05);
       -ms-transform: scale(1.05);
@@ -63,9 +170,16 @@ export const InventoryItemDiv = styled.div`
          color: #6ea22c;
          font-weight: bold;
       }
+      div:nth-of-type(3) {
+         img {
+            cursor: pointer;
+            opacity: 1;
+         }
+      }
    }
    div {
-      padding: 1rem;
+      margin: 1rem;
+      word-wrap: break-word;
       h4 {
          text-transform: capitalize;
          margin: 0 0 1rem;
@@ -86,6 +200,24 @@ export const InventoryItemDiv = styled.div`
    }
    div:nth-of-type(1) {
       border-bottom: .1rem solid #b0b0b0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p:nth-of-type(2) {
+         font-size: 1.1rem;
+         font-weight: bold;
+         color: red;
+         animation: ${fade} 2s linear;
+      }
+   }
+   div:nth-of-type(3) {
+      width: 35%;
+      margin-left: auto;
+      display:flex;
+      justify-content: space-between;
+      img {
+         opacity: 0.2;
+      }
    }
 `;
 
@@ -97,10 +229,16 @@ export const InventoryFormSection = styled.section`
    flex-direction: column;
    border-radius: 1rem;
    box-shadow: -0.1rem 1rem 1rem 0 rgba(0, 0, 0, 0.08);
+   @media (max-width: 500px) {
+      width: 92%;
+   }
    form {
       width: 70%;
       margin: 1rem auto;
       text-align: left;
+      @media (max-width: 500px) {
+         width: 85%;
+      }
       div {
          display: flex;
          flex-direction: column;
