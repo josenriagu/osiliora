@@ -93,6 +93,9 @@ export const addInventoryItem = (userId, item) => dispatch => {
    dispatch(requesting());
    return axios.post('https://soup-server.herokuapp.com/upload', formData, config)
       .then(res => {
+         if (res.data.image.includes('http://')) {
+            res.data.image = res.data.image.replace('http', 'https') // change the cloudinary image link protocol (if http) to https
+         }
          item.imageUrl = res.data.image
       })
       .then(() => {

@@ -127,8 +127,9 @@ class InventoryForm extends Component {
                      id="description"
                      cols="30"
                      rows="4"
+                     maxLength="80" // specifies the maximum number of character input
                      type="text"
-                     placeholder="Description(optional)"
+                     placeholder="optional description. 80 characters max"
                      onChange={this.changeHandler}
                   />
                </div>

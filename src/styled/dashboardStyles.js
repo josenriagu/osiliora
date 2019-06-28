@@ -212,11 +212,15 @@ export const InventoryItemDiv = styled.div`
    section:nth-of-type(2) {
       margin-top: 0;
       div {
-         width: 10rem;
-         height: 10rem;
+         width: 15rem;
+         height: 15rem;
          margin: 0 auto 1rem;
          position: relative;
          overflow: hidden;
+         @media (max-width: 500px) {
+            width: 12rem;
+            height: 12rem;
+         }
          img {
             width: 100%;
             height: 100%;
@@ -228,6 +232,9 @@ export const InventoryItemDiv = styled.div`
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
          }
+      }
+      h4 {
+         text-align: center;
       }
    }
    section:nth-of-type(3) {
