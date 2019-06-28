@@ -22,6 +22,7 @@ class Home extends Component {
          }
       })
    }
+
    onEdit = id => {
       this.props.toggleEdit(true);
       const itemToEdit = this.props.inventory.find(item => item.itemId === id)
@@ -33,6 +34,7 @@ class Home extends Component {
       this.props.deleteInventoryItem(this.props.userId, itemId)
          .then(() => this.props.fetchInventory(this.props.userId))
    }
+   
    render() {
       return (
          <HomeWrapperDiv>

@@ -147,7 +147,6 @@ export const InventoryDiv = styled.div`
       padding: .8rem;
    }
 `;
-
 export const InventoryItemDiv = styled.div`
    width: 23%;
    margin-bottom: 2rem;
@@ -241,7 +240,6 @@ export const InventoryItemDiv = styled.div`
       }
    }
 `;
-
 export const InventoryFormSection = styled.section`
    width: 40%;   
    margin: 2rem auto 0;

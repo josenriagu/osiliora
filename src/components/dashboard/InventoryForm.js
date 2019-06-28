@@ -4,7 +4,6 @@ import { addInventoryItem, updateInventoryItem } from '../../actions';
 import { InventoryFormSection } from '../../styled/dashboardStyles';
 
 class InventoryForm extends Component {
-
    state = {
       form: {
          name: "",
@@ -78,6 +77,7 @@ class InventoryForm extends Component {
             this.props.history.push("/");
          })
    }
+
    onUpdate = event => {
       event.preventDefault()
       const { name, qty, categoryId, units, description } = this.state.form;
@@ -94,6 +94,7 @@ class InventoryForm extends Component {
             this.props.history.push("/");
          })
    }
+   
    render() {
       return (
          <InventoryFormSection>
