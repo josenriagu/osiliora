@@ -4,13 +4,13 @@ import { addInventoryItem, updateInventoryItem } from '../../actions';
 import { InventoryFormSection } from '../../styled/dashboardStyles';
 
 class InventoryForm extends Component {
-
    state = {
       form: {
          name: "",
          description: "",
          qty: 0,
          categoryId: "",
+         imageBlob: "",
          units: ""
       },
    }
@@ -31,6 +31,18 @@ class InventoryForm extends Component {
       }
    }
 
+   getImageBlob = event => {
+      const blob = event.target.files[0];
+      this.setState(state => {
+         return {
+            form: {
+               ...state.form,
+               imageBlob: blob
+            }
+         }
+      })
+   }
+
    inputChange = (field, value) => {
       this.setState(state => {
          return {
@@ -41,20 +53,22 @@ class InventoryForm extends Component {
          };
       });
    }
-   changeHandler = (event) => {
+
+   changeHandler = event => {
       const field = event.target.name;
       const value = event.target.value;
       this.inputChange(field, value);
    }
+
    onAdd = event => {
       event.preventDefault();
-      const { name, qty, categoryId, units, description } = this.state.form;
+      const { name, qty, categoryId, imageBlob, units, description } = this.state.form;
       const newItem = {
          name: name,
          qty: qty,
          categoryId: categoryId,
          units: units,
-         imageUrl: '',
+         imageUrl: imageBlob,
          inStock: true,
          description: description
       }
@@ -63,6 +77,7 @@ class InventoryForm extends Component {
             this.props.history.push("/");
          })
    }
+
    onUpdate = event => {
       event.preventDefault()
       const { name, qty, categoryId, units, description } = this.state.form;
@@ -71,7 +86,6 @@ class InventoryForm extends Component {
          qty: qty,
          categoryId: categoryId,
          units: units,
-         imageUrl: '',
          inStock: true,
          description: description
       }
@@ -80,6 +94,7 @@ class InventoryForm extends Component {
             this.props.history.push("/");
          })
    }
+   
    render() {
       return (
          <InventoryFormSection>
@@ -93,32 +108,33 @@ class InventoryForm extends Component {
             }
             <form onSubmit={event => this.props.editMode ? this.onUpdate(event) : this.onAdd(event)}>
                <div>
-                  <label>Name</label>
+                  <label htmlFor="name">Name</label>
                   <input
+                     name="name"
                      autoComplete="name"
                      required
                      type="text"
                      placeholder="Russet Potatoes"
-                     name="name"
                      value={this.state.form.name}
                      onChange={this.changeHandler}
                   />
                </div>
                <div>
-                  <label>Description</label>
+                  <label htmlFor="description">Description</label>
                   <textarea
                      name="description"
                      value={this.state.form.description}
                      id="description"
                      cols="30"
                      rows="4"
+                     maxLength="80" // specifies the maximum number of character input
                      type="text"
-                     placeholder="Description(optional)"
+                     placeholder="optional description. 80 characters max"
                      onChange={this.changeHandler}
                   />
                </div>
                <div>
-                  <label>Quantity</label>
+                  <label htmlFor="qty">Quantity</label>
                   <input
                      name="qty"
                      value={this.state.form.qty}
@@ -130,18 +146,18 @@ class InventoryForm extends Component {
                   />
                </div>
                <div>
-                  <label>Unit</label>
+                  <label htmlFor="units">Unit</label>
                   <input
                      name="units"
                      value={this.state.form.units}
                      autoComplete="unit"
                      type="text"
-                     placeholder="lbs or kilos or grams"
+                     placeholder="lbs or kilos or grams or pieces or units"
                      onChange={this.changeHandler}
                   />
                </div>
                <div>
-                  <label>Select Category</label>
+                  <label htmlFor="categoryId">Select Category</label>
                   <select
                      name="categoryId"
                      required
@@ -153,6 +169,21 @@ class InventoryForm extends Component {
                      }
                   </select>
                </div>
+               {
+                  this.props.editMode
+                     ?
+                     null
+                     :
+                     <div>
+                        <label htmlFor="imageUrl">Image (240 x 240px)</label>
+                        <input
+                           name="imageUrl"
+                           required
+                           type="file"
+                           onChange={this.getImageBlob}
+                        />
+                     </div>
+               }
                <div>
                   {
                      this.props.editMode

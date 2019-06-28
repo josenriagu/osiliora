@@ -1,5 +1,6 @@
 import axios from 'axios';
 import enrichedAxios from '../axios';
+import FormData from 'form-data';
 
 export const REQUESTING = "REQUESTING";
 export const SUCCESS = "SUCCESS";
@@ -8,9 +9,6 @@ export const SAVE_ID = "SAVE_ID";
 export const FETCH_INVENTORY = "FETCH_INVENTORY";
 export const TOGGLE_EDIT = "TOGGLE_EDIT";
 export const SET_EDIT = "SET_EDIT"
-export const ADD_ITEM = "ADD_ITEM";
-export const DELETE_ITEM = "DELETE_ITEM";
-export const EDIT_ITEM = "EDIT_ITEM";
 
 export const requesting = () => {
    return {
@@ -86,8 +84,23 @@ export const fetchInventory = (userId) => dispatch => {
       })
 }
 export const addInventoryItem = (userId, item) => dispatch => {
+   const formData = new FormData(); // create an instance of formData
+   formData.append('image', item.imageUrl);
+   const config = {
+      headers: { 'Content-Type': 'multipart/form-data' }
+   } // define post request headers for cloudinary upload
+   
    dispatch(requesting());
-   return enrichedAxios().post(`https://soup-server.herokuapp.com/users/${userId}/inventory`, item)
+   return axios.post('https://soup-server.herokuapp.com/upload', formData, config)
+      .then(res => {
+         if (res.data.image.includes('http://')) {
+            res.data.image = res.data.image.replace('http', 'https') // change the cloudinary image link protocol (if http) to https
+         }
+         item.imageUrl = res.data.image
+      })
+      .then(() => {
+         enrichedAxios().post(`https://soup-server.herokuapp.com/users/${userId}/inventory`, item)
+      })
       .then(() => {
          fetchInventory(userId);
       }).catch(err => {

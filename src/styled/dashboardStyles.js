@@ -147,7 +147,6 @@ export const InventoryDiv = styled.div`
       padding: .8rem;
    }
 `;
-
 export const InventoryItemDiv = styled.div`
    width: 23%;
    margin-bottom: 2rem;
@@ -170,14 +169,14 @@ export const InventoryItemDiv = styled.div`
          color: #6ea22c;
          font-weight: bold;
       }
-      div:nth-of-type(3) {
+      section:nth-of-type(3) {
          img {
             cursor: pointer;
             opacity: 1;
          }
       }
    }
-   div {
+   section {
       margin: 1rem;
       word-wrap: break-word;
       h4 {
@@ -198,7 +197,7 @@ export const InventoryItemDiv = styled.div`
          }
       }
    }
-   div:nth-of-type(1) {
+   section:nth-of-type(1) {
       border-bottom: .1rem solid #b0b0b0;
       display: flex;
       justify-content: space-between;
@@ -210,7 +209,35 @@ export const InventoryItemDiv = styled.div`
          animation: ${fade} 2s linear;
       }
    }
-   div:nth-of-type(3) {
+   section:nth-of-type(2) {
+      margin-top: 0;
+      div {
+         width: 15rem;
+         height: 15rem;
+         margin: 0 auto 1rem;
+         position: relative;
+         overflow: hidden;
+         @media (max-width: 500px) {
+            width: 12rem;
+            height: 12rem;
+         }
+         img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+         }
+      }
+      h4 {
+         text-align: center;
+      }
+   }
+   section:nth-of-type(3) {
       width: 35%;
       margin-left: auto;
       display:flex;
@@ -220,7 +247,6 @@ export const InventoryItemDiv = styled.div`
       }
    }
 `;
-
 export const InventoryFormSection = styled.section`
    width: 40%;   
    margin: 2rem auto 0;
